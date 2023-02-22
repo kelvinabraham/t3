@@ -11,14 +11,19 @@ const winningCombos = [
 ];
 
 /*----- app's state (variables) -----*/
+
 let board;
 let turn = "X";
 let win;
 
 /*----- cached element references -----*/
+
 const squares = Array.from(document.querySelectorAll("#board div"));
 
 /*----- event listeners -----*/
+document.getElementById("board").addEventListener("click", handleTurn);
+const messages = document.querySelector("h2");
+document.getElementById("reset-button").addEventListener("click", init);
 
 /*----- functions -----*/
 
@@ -44,6 +49,7 @@ function handleTurn() {
   win = getWinner();
   render();
 }
+
 function init() {
   board = ["", "", "", "", "", "", "", "", ""];
   render();
@@ -54,6 +60,12 @@ function render() {
     //this moves the value of the board item into the squares[idx]
     squares[index].textContent = mark;
   });
+  messages.textContent =
+    win === "T"
+      ? `That's a tie, try again!`
+      : win
+      ? `${win} wins!!`
+      : `It's ${turn}'s turn!`;
 }
 
 init();
