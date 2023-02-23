@@ -57,7 +57,6 @@ function init() {
 
 function render() {
   board.forEach(function (mark, index) {
-    //this moves the value of the board item into the squares[idx]
     squares[index].textContent = mark;
   });
   messages.textContent =
